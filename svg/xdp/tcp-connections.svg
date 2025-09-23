@@ -6,13 +6,13 @@
   <g id="laptop" transform="translate(40, 70)">
     <!-- Écran -->
     <path d="M43.02 25.01 L4.98 25.01 L4.98 1.5 C4.98 0.68 5.66 0 6.49 0 L41.51 0 C42.34 0 43.02 0.68 43.02 1.5 Z"
-          fill="#dae8fc" fill-opacity="0.5"/>
+          fill="#6c8ebf" fill-opacity="0.4"/>
     <!-- Base / clavier -->
     <path d="M48 25.92 L27.27 25.92 L27.27 26.2 C27.27 26.52 27.01 26.78 26.69 26.78 L21.31 26.78
              C20.99 26.78 20.73 26.52 20.73 26.2 L20.73 25.92 L0 25.92 L0 26.66 C0 27.4 0.6 28 1.33 28
              L46.67 28 C47.4 28 48 27.4 48 26.66 Z M41.37 1.65 L41.37 23.36 L6.63 23.36 L6.63 1.65 Z
              M41.51 0 L6.49 0 C5.66 0 4.98 0.68 4.98 1.5 L4.98 25.01 L43.02 25.01 L43.02 1.5
-             C43.02 0.68 42.34 0 41.51 0 Z" fill="#dae8fc"/>
+             C43.02 0.68 42.34 0 41.51 0 Z" fill="#dae8fc" fill-opacity="0.9"/>
   </g>
 
   <g id="server" transform="translate(265, 45)">
@@ -117,9 +117,9 @@
         label.setAttribute("fill", blue);
         await animatePacket(createPacket(blue,"ACK", clientRight), clientRight, serverLeft, 1.0);
       }
+      await new Promise(r=>setTimeout(r,500));
       label.setAttribute("fill", orange);
       label.textContent = "Closing Connection";
-      await new Promise(r=>setTimeout(r,500));
 
       // 4-way close
       // label.textContent = "FIN";
@@ -138,7 +138,7 @@
         label.setAttribute("fill", green);
       await animatePacket(createPacket(green,"ACK", clientRight), clientRight, serverLeft, 1.0);
 
-        label.setAttribute("fill", "black");
+      label.setAttribute("fill", "#aaa");
       label.textContent = "Closed Connection";
 
       await new Promise(r=>setTimeout(r,1500));
