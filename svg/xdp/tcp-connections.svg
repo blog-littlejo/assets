@@ -1,0 +1,130 @@
+<svg viewBox="0 0 700 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="background:#f8f8f8;">
+  <!-- Client: Laptop -->
+  <rect x="80" y="120" width="60" height="40" fill="#4CAF50" stroke="black" stroke-width="2"/>
+  <rect x="85" y="165" width="50" height="10" fill="#388E3C" stroke="black" stroke-width="1"/>
+  <text x="75" y="190" font-size="16" fill="black" font-family="Arial">Client</text>
+
+  <!-- Serveur: Rack -->
+  <rect x="500" y="110" width="80" height="80" fill="#2196F3" stroke="black" stroke-width="2"/>
+  <rect x="510" y="120" width="10" height="15" fill="#64B5F6"/>
+  <rect x="525" y="120" width="10" height="15" fill="#64B5F6"/>
+  <rect x="540" y="120" width="10" height="15" fill="#64B5F6"/>
+  <rect x="510" y="140" width="10" height="15" fill="#64B5F6"/>
+  <rect x="525" y="140" width="10" height="15" fill="#64B5F6"/>
+  <rect x="540" y="140" width="10" height="15" fill="#64B5F6"/>
+  <text x="500" y="210" font-size="16" fill="black" font-family="Arial">Serveur</text>
+
+  <!-- Câble -->
+  <line x1="140" y1="150" x2="500" y2="150" stroke="#ccc" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Circles -->
+  <circle id="syn" cx="140" cy="150" r="10" fill="orange" visibility="hidden"/>
+  <circle id="synack" cx="500" cy="150" r="10" fill="purple" visibility="hidden"/>
+  <circle id="ack" cx="140" cy="150" r="10" fill="green" visibility="hidden"/>
+
+  <!-- Data transfer -->
+  <circle id="data1" cx="140" cy="150" r="6" fill="red" visibility="hidden"/>
+  <circle id="data2" cx="500" cy="150" r="6" fill="blue" visibility="hidden"/>
+  <circle id="data3" cx="140" cy="150" r="6" fill="red" visibility="hidden"/>
+  <circle id="data4" cx="500" cy="150" r="6" fill="blue" visibility="hidden"/>
+
+  <!-- 4-way FIN handshake -->
+  <circle id="fin1" cx="140" cy="150" r="10" fill="brown" visibility="hidden"/>
+  <circle id="ack1" cx="500" cy="150" r="10" fill="gray" visibility="hidden"/>
+  <circle id="fin2" cx="500" cy="150" r="10" fill="brown" visibility="hidden"/>
+  <circle id="ack2" cx="140" cy="150" r="10" fill="gray" visibility="hidden"/>
+
+  <!-- Labels -->
+  <text id="label-syn" x="300" y="130" font-size="14" fill="orange" opacity="0">SYN</text>
+  <text id="label-synack" x="300" y="170" font-size="14" fill="purple" opacity="0">SYN-ACK</text>
+  <text id="label-ack" x="300" y="210" font-size="14" fill="green" opacity="0">ACK</text>
+  <text id="label-data" x="270" y="100" font-size="16" fill="darkred" opacity="0">Data Transfer</text>
+  <text id="label-fin1" x="300" y="130" font-size="14" fill="brown" opacity="0">FIN</text>
+  <text id="label-ack1" x="300" y="170" font-size="14" fill="gray" opacity="0">ACK</text>
+  <text id="label-fin2" x="300" y="130" font-size="14" fill="brown" opacity="0">FIN</text>
+  <text id="label-ack2" x="300" y="210" font-size="14" fill="gray" opacity="0">ACK</text>
+  <text id="label-closed" x="270" y="80" font-size="16" fill="black" opacity="0">Connection Closed</text>
+
+  <script><![CDATA[
+    const duration = 1000, delay = 200;
+    const elements = {
+      syn: document.getElementById("syn"),
+      synack: document.getElementById("synack"),
+      ack: document.getElementById("ack"),
+      data1: document.getElementById("data1"),
+      data2: document.getElementById("data2"),
+      data3: document.getElementById("data3"),
+      data4: document.getElementById("data4"),
+      fin1: document.getElementById("fin1"),
+      ack1: document.getElementById("ack1"),
+      fin2: document.getElementById("fin2"),
+      ack2: document.getElementById("ack2")
+    };
+    const labels = {
+      syn: document.getElementById("label-syn"),
+      synack: document.getElementById("label-synack"),
+      ack: document.getElementById("label-ack"),
+      data: document.getElementById("label-data"),
+      fin1: document.getElementById("label-fin1"),
+      ack1: document.getElementById("label-ack1"),
+      fin2: document.getElementById("label-fin2"),
+      ack2: document.getElementById("label-ack2"),
+      closed: document.getElementById("label-closed")
+    };
+
+    function moveCircle(circle, fromX, toX, dur) {
+      let start = null;
+      circle.setAttribute("cx", fromX);
+      circle.style.visibility = "visible";
+      function step(ts){
+        if(!start) start=ts;
+        let p=Math.min((ts-start)/dur,1);
+        circle.setAttribute("cx",fromX + (toX-fromX)*p);
+        if(p<1) requestAnimationFrame(step);
+        else circle.style.visibility="hidden";
+      }
+      requestAnimationFrame(step);
+    }
+
+    function animateHandshake() {
+      // 3-way handshake
+      labels.syn.setAttribute("opacity",1); moveCircle(elements.syn,140,500,duration);
+      setTimeout(()=>labels.syn.setAttribute("opacity",0),duration);
+      setTimeout(()=>{
+        labels.synack.setAttribute("opacity",1); moveCircle(elements.synack,500,140,duration);
+        setTimeout(()=>labels.synack.setAttribute("opacity",0),duration);
+      },duration+delay);
+      setTimeout(()=>{
+        labels.ack.setAttribute("opacity",1); moveCircle(elements.ack,140,500,duration);
+        setTimeout(()=>labels.ack.setAttribute("opacity",0),duration);
+      },2*(duration+delay));
+
+      // Data transfer prolongé
+      setTimeout(()=>{
+        labels.data.setAttribute("opacity",1);
+        moveCircle(elements.data1,140,500,duration*2);
+        moveCircle(elements.data2,500,140,duration*2);
+        setTimeout(()=>{ moveCircle(elements.data3,140,500,duration*2); moveCircle(elements.data4,500,140,duration*2); },500);
+        setTimeout(()=>labels.data.setAttribute("opacity",0), duration*2 + 500);
+      },3*(duration+delay));
+
+      // 4-way FIN handshake correcte
+      setTimeout(()=>{ labels.fin1.setAttribute("opacity",1); moveCircle(elements.fin1,140,500,duration); setTimeout(()=>labels.fin1.setAttribute("opacity",0),duration); },6*(duration+delay));
+      setTimeout(()=>{ labels.ack1.setAttribute("opacity",1); moveCircle(elements.ack1,500,140,duration); setTimeout(()=>labels.ack1.setAttribute("opacity",0),duration); },7*(duration+delay));
+      setTimeout(()=>{ labels.fin2.setAttribute("opacity",1); moveCircle(elements.fin2,500,140,duration); setTimeout(()=>labels.fin2.setAttribute("opacity",0),duration); },8*(duration+delay));
+      setTimeout(()=>{ labels.ack2.setAttribute("opacity",1); moveCircle(elements.ack2,140,500,duration); setTimeout(()=>labels.ack2.setAttribute("opacity",0),duration); },9*(duration+delay));
+
+      // Connection closed
+      setTimeout(()=>{
+        labels.closed.setAttribute("opacity",1);
+        setTimeout(()=>labels.closed.setAttribute("opacity",0),1000);
+      },10*(duration+delay));
+
+      // Boucle complète
+      setTimeout(animateHandshake,11*(duration+delay));
+    }
+
+    animateHandshake();
+  ]]></script>
+</svg>
+
