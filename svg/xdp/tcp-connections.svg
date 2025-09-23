@@ -1,130 +1,140 @@
-<svg viewBox="0 0 700 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="background:#f8f8f8;">
-  <!-- Client: Laptop -->
-  <rect x="80" y="120" width="60" height="40" fill="#4CAF50" stroke="black" stroke-width="2"/>
-  <rect x="85" y="165" width="50" height="10" fill="#388E3C" stroke="black" stroke-width="1"/>
-  <text x="75" y="190" font-size="16" fill="black" font-family="Arial">Client</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 170" width="100%" height="auto">
+  <!-- Fond -->
+  <rect x="0" y="0" width="360" height="170" rx="10" ry="10"
+        fill="#fff2cc" stroke="#d6b656" fill-opacity="0.1" stroke-opacity="0.2"/>
 
-  <!-- Serveur: Rack -->
-  <rect x="500" y="110" width="80" height="80" fill="#2196F3" stroke="black" stroke-width="2"/>
-  <rect x="510" y="120" width="10" height="15" fill="#64B5F6"/>
-  <rect x="525" y="120" width="10" height="15" fill="#64B5F6"/>
-  <rect x="540" y="120" width="10" height="15" fill="#64B5F6"/>
-  <rect x="510" y="140" width="10" height="15" fill="#64B5F6"/>
-  <rect x="525" y="140" width="10" height="15" fill="#64B5F6"/>
-  <rect x="540" y="140" width="10" height="15" fill="#64B5F6"/>
-  <text x="500" y="210" font-size="16" fill="black" font-family="Arial">Serveur</text>
+  <g id="laptop" transform="translate(40, 70)">
+    <!-- Écran -->
+    <path d="M43.02 25.01 L4.98 25.01 L4.98 1.5 C4.98 0.68 5.66 0 6.49 0 L41.51 0 C42.34 0 43.02 0.68 43.02 1.5 Z"
+          fill="#ffffff"/>
+    <!-- Base / clavier -->
+    <path d="M48 25.92 L27.27 25.92 L27.27 26.2 C27.27 26.52 27.01 26.78 26.69 26.78 L21.31 26.78
+             C20.99 26.78 20.73 26.52 20.73 26.2 L20.73 25.92 L0 25.92 L0 26.66 C0 27.4 0.6 28 1.33 28
+             L46.67 28 C47.4 28 48 27.4 48 26.66 Z M41.37 1.65 L41.37 23.36 L6.63 23.36 L6.63 1.65 Z
+             M41.51 0 L6.49 0 C5.66 0 4.98 0.68 4.98 1.5 L4.98 25.01 L43.02 25.01 L43.02 1.5
+             C43.02 0.68 42.34 0 41.51 0 Z" fill="#dae8fc"/>
+  </g>
+
+  <g id="server" transform="translate(265, 45)">
+<rect x="0" y="0" width="45" height="78" fill="none" stroke="none" pointer-events="all"/><path d="M 42.41 0.16 L 2.59 0.16 C 1.16 0.16 0 1.33 0 2.76 L 0 75.25 C 0 76.68 1.16 77.84 2.59 77.84 L 42.41 77.84 C 43.84 77.84 45 76.68 45 75.25 L 45 2.76 C 45 1.33 43.84 0.16 42.41 0.16 Z M 3.53 74.31 L 3.53 3.69 L 41.47 3.69 L 41.47 74.31 Z M 7.83 11.62 L 37.17 11.62 L 37.17 8.09 L 7.83 8.09 Z M 7.83 19.16 L 37.17 19.16 L 37.17 15.63 L 7.83 15.63 Z M 7.83 26.98 L 37.17 26.98 L 37.17 23.45 L 7.83 23.45 Z M 7.83 34.61 L 37.17 34.61 L 37.17 31.08 L 7.83 31.08 Z" fill-opacity="0.9" fill="#f8cecc" stroke="none" pointer-events="all" style="fill: rgb(248, 206, 204);"/>
+  </g>
 
   <!-- Câble -->
-  <line x1="140" y1="150" x2="500" y2="150" stroke="#ccc" stroke-width="8" stroke-linecap="round"/>
+  <line x1="88" y1="84" x2="260" y2="84" stroke="#aaa" stroke-width="5" fill-opacity="0.9" />
 
-  <!-- Circles -->
-  <circle id="syn" cx="140" cy="150" r="10" fill="orange" visibility="hidden"/>
-  <circle id="synack" cx="500" cy="150" r="10" fill="purple" visibility="hidden"/>
-  <circle id="ack" cx="140" cy="150" r="10" fill="green" visibility="hidden"/>
-
-  <!-- Data transfer -->
-  <circle id="data1" cx="140" cy="150" r="6" fill="red" visibility="hidden"/>
-  <circle id="data2" cx="500" cy="150" r="6" fill="blue" visibility="hidden"/>
-  <circle id="data3" cx="140" cy="150" r="6" fill="red" visibility="hidden"/>
-  <circle id="data4" cx="500" cy="150" r="6" fill="blue" visibility="hidden"/>
-
-  <!-- 4-way FIN handshake -->
-  <circle id="fin1" cx="140" cy="150" r="10" fill="brown" visibility="hidden"/>
-  <circle id="ack1" cx="500" cy="150" r="10" fill="gray" visibility="hidden"/>
-  <circle id="fin2" cx="500" cy="150" r="10" fill="brown" visibility="hidden"/>
-  <circle id="ack2" cx="140" cy="150" r="10" fill="gray" visibility="hidden"/>
+  <!-- Paquets animés -->
+  <g id="packets"></g>
 
   <!-- Labels -->
-  <text id="label-syn" x="300" y="130" font-size="14" fill="orange" opacity="0">SYN</text>
-  <text id="label-synack" x="300" y="170" font-size="14" fill="purple" opacity="0">SYN-ACK</text>
-  <text id="label-ack" x="300" y="210" font-size="14" fill="green" opacity="0">ACK</text>
-  <text id="label-data" x="270" y="100" font-size="16" fill="darkred" opacity="0">Data Transfer</text>
-  <text id="label-fin1" x="300" y="130" font-size="14" fill="brown" opacity="0">FIN</text>
-  <text id="label-ack1" x="300" y="170" font-size="14" fill="gray" opacity="0">ACK</text>
-  <text id="label-fin2" x="300" y="130" font-size="14" fill="brown" opacity="0">FIN</text>
-  <text id="label-ack2" x="300" y="210" font-size="14" fill="gray" opacity="0">ACK</text>
-  <text id="label-closed" x="270" y="80" font-size="16" fill="black" opacity="0">Connection Closed</text>
+  <text id="label" x="180" y="30" font-family="Arial" font-size="14" text-anchor="middle" fill="black"></text>
 
   <script><![CDATA[
-    const duration = 1000, delay = 200;
-    const elements = {
-      syn: document.getElementById("syn"),
-      synack: document.getElementById("synack"),
-      ack: document.getElementById("ack"),
-      data1: document.getElementById("data1"),
-      data2: document.getElementById("data2"),
-      data3: document.getElementById("data3"),
-      data4: document.getElementById("data4"),
-      fin1: document.getElementById("fin1"),
-      ack1: document.getElementById("ack1"),
-      fin2: document.getElementById("fin2"),
-      ack2: document.getElementById("ack2")
-    };
-    const labels = {
-      syn: document.getElementById("label-syn"),
-      synack: document.getElementById("label-synack"),
-      ack: document.getElementById("label-ack"),
-      data: document.getElementById("label-data"),
-      fin1: document.getElementById("label-fin1"),
-      ack1: document.getElementById("label-ack1"),
-      fin2: document.getElementById("label-fin2"),
-      ack2: document.getElementById("label-ack2"),
-      closed: document.getElementById("label-closed")
-    };
+    const packetsLayer = document.getElementById("packets");
+    const label = document.getElementById("label");
 
-    function moveCircle(circle, fromX, toX, dur) {
-      let start = null;
-      circle.setAttribute("cx", fromX);
-      circle.style.visibility = "visible";
-      function step(ts){
-        if(!start) start=ts;
-        let p=Math.min((ts-start)/dur,1);
-        circle.setAttribute("cx",fromX + (toX-fromX)*p);
-        if(p<1) requestAnimationFrame(step);
-        else circle.style.visibility="hidden";
+    const clientRight = 88;          // bordure droite client
+    const serverLeft = 260 - 30;   // bordure gauche serveur
+
+    const red = "#b85450";
+    const red_light = "#f8cecc";
+    const blue = "#6c8ebf"; 
+    const blue_light = "#dae8fc"; 
+    const green = "#82B366"; 
+    const green_light = "#D5E8D4"; 
+    const orange = "#D79B00";
+    const orange_light = "#FFE6CC"; 
+    const purple = "#9673A6";
+    const purple_light = "#E1D5E7"; 
+
+
+    function createPacket(color, text, startX) {
+      const g = document.createElementNS("http://www.w3.org/2000/svg","g");
+      g.setAttribute("transform", `translate(${startX},0)`);
+
+      const r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+      r.setAttribute("x", 0);
+      r.setAttribute("y", 76);
+      r.setAttribute("width", 30);
+      r.setAttribute("height", 16);
+      r.setAttribute("rx", 3);
+      r.setAttribute("fill", color);
+      r.setAttribute("fill-opacity", 0.7);
+      g.appendChild(r);
+
+      const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+      t.setAttribute("x", 15);
+      t.setAttribute("y", 86);
+      t.setAttribute("text-anchor","middle");
+      t.setAttribute("font-size","7");
+      t.setAttribute("fill","white");
+      r.setAttribute("fill-opacity", 0.9);
+      t.textContent = text;
+      g.appendChild(t);
+
+      packetsLayer.appendChild(g);
+      return g;
+    }
+
+    function animatePacket(pkt, fromX, toX, dur) {
+      return new Promise(resolve=>{
+        const start = performance.now();
+        function step(ts){
+          const p = Math.min(1,(ts-start)/(dur*1000));
+          const x = fromX + (toX-fromX)*p;
+          pkt.setAttribute("transform",`translate(${x},0)`);
+          if(p<1) requestAnimationFrame(step);
+          else {
+            pkt.setAttribute("transform",`translate(${toX},0)`);
+            requestAnimationFrame(()=>{ if (pkt.parentNode) packetsLayer.removeChild(pkt); resolve(); });
+          }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    async function runCycle(){
+      // Handshake
+      label.textContent = "Establish Connection";
+      //label.textContent = "SYN";
+      await animatePacket(createPacket(orange,"SYN", clientRight), clientRight, serverLeft, 1.2);
+
+      //label.textContent = "SYN-ACK";
+      await animatePacket(createPacket(purple,"SYN-ACK", serverLeft), serverLeft, clientRight, 1.2);
+
+      //label.textContent = "ACK";
+      await animatePacket(createPacket(green,"ACK", clientRight), clientRight, serverLeft, 1.2);
+
+      await new Promise(r=>setTimeout(r,500));
+      // Data Transfer (serveur → client)
+      label.textContent = "Data Transfer";
+      for(let i=0;i<3;i++){
+        await animatePacket(createPacket(red,"DATA", serverLeft), serverLeft, clientRight, 1.2);
+        await animatePacket(createPacket(blue,"ACK", clientRight), clientRight, serverLeft, 1.0);
       }
-      requestAnimationFrame(step);
+      label.textContent = "Closing Connection";
+      await new Promise(r=>setTimeout(r,500));
+
+      // 4-way close
+      // label.textContent = "FIN";
+      await animatePacket(createPacket(orange,"FIN", clientRight), clientRight, serverLeft, 1.2);
+
+      //label.textContent = "ACK";
+      await animatePacket(createPacket(green,"ACK", serverLeft), serverLeft, clientRight, 1.0);
+
+      //label.textContent = "FIN";
+      await animatePacket(createPacket(orange,"FIN", serverLeft), serverLeft, clientRight, 1.2);
+
+      //label.textContent = "ACK";
+      await animatePacket(createPacket(green,"ACK", clientRight), clientRight, serverLeft, 1.0);
+
+      label.textContent = "Closed Connection";
+
+      await new Promise(r=>setTimeout(r,1500));
+      label.textContent = "";
+      runCycle();
     }
 
-    function animateHandshake() {
-      // 3-way handshake
-      labels.syn.setAttribute("opacity",1); moveCircle(elements.syn,140,500,duration);
-      setTimeout(()=>labels.syn.setAttribute("opacity",0),duration);
-      setTimeout(()=>{
-        labels.synack.setAttribute("opacity",1); moveCircle(elements.synack,500,140,duration);
-        setTimeout(()=>labels.synack.setAttribute("opacity",0),duration);
-      },duration+delay);
-      setTimeout(()=>{
-        labels.ack.setAttribute("opacity",1); moveCircle(elements.ack,140,500,duration);
-        setTimeout(()=>labels.ack.setAttribute("opacity",0),duration);
-      },2*(duration+delay));
-
-      // Data transfer prolongé
-      setTimeout(()=>{
-        labels.data.setAttribute("opacity",1);
-        moveCircle(elements.data1,140,500,duration*2);
-        moveCircle(elements.data2,500,140,duration*2);
-        setTimeout(()=>{ moveCircle(elements.data3,140,500,duration*2); moveCircle(elements.data4,500,140,duration*2); },500);
-        setTimeout(()=>labels.data.setAttribute("opacity",0), duration*2 + 500);
-      },3*(duration+delay));
-
-      // 4-way FIN handshake correcte
-      setTimeout(()=>{ labels.fin1.setAttribute("opacity",1); moveCircle(elements.fin1,140,500,duration); setTimeout(()=>labels.fin1.setAttribute("opacity",0),duration); },6*(duration+delay));
-      setTimeout(()=>{ labels.ack1.setAttribute("opacity",1); moveCircle(elements.ack1,500,140,duration); setTimeout(()=>labels.ack1.setAttribute("opacity",0),duration); },7*(duration+delay));
-      setTimeout(()=>{ labels.fin2.setAttribute("opacity",1); moveCircle(elements.fin2,500,140,duration); setTimeout(()=>labels.fin2.setAttribute("opacity",0),duration); },8*(duration+delay));
-      setTimeout(()=>{ labels.ack2.setAttribute("opacity",1); moveCircle(elements.ack2,140,500,duration); setTimeout(()=>labels.ack2.setAttribute("opacity",0),duration); },9*(duration+delay));
-
-      // Connection closed
-      setTimeout(()=>{
-        labels.closed.setAttribute("opacity",1);
-        setTimeout(()=>labels.closed.setAttribute("opacity",0),1000);
-      },10*(duration+delay));
-
-      // Boucle complète
-      setTimeout(animateHandshake,11*(duration+delay));
-    }
-
-    animateHandshake();
+    runCycle();
   ]]></script>
 </svg>
 
