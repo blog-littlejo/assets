@@ -498,20 +498,21 @@
         begin="0s"
         repeatCount="indefinite"
         path="
-M400 190 L970 190
-M1046 300 L1046 370
+M409 190 L950 190
+M1046 284 L1046 365
 M1034 406 L1034 467
 M1034 476 L1034 520 L1050 526 L1050 570 L1201 570 L1201 700 L1150 706.5
-M1150 706.5 L1001 706.5 L1001 526
-M997 520 L997 234 L400 234
+M1150 706.5 L1001 706.5 L1001 476
+M1001 476 L1004.4 470 L1004.7 406
+M997 365 L997 281 L950 234 L406 234
 "
     />
 
     <animate
         attributeName="fill"
         calcMode="discrete"
-        values="dodgerblue;crimson;purple;orange;limegreen;purple;crimson"
-        keyTimes="0;0.2245;0.3197;0.3473;0.5196;0.6522;0.7649"
+        values="dodgerblue;crimson;purple;orange;limegreen;orange;purple;crimson"
+        keyTimes="0;0.2266;0.3289;0.3566;0.5299;0.6803;0.7083;0.7845"
         dur="8s"
         repeatCount="indefinite"
     />
