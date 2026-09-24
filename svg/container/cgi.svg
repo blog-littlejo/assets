@@ -499,19 +499,19 @@
         repeatCount="indefinite"
         path="
 M400 190 L970 190
-M1047 300 L1047 380
-M1035 390 L1035 450
-M1040 460 L1040 500 L1040 570 L1200 570 L1200 690
-M1200 690 L1000 690 L1000 520 
-M980 500 L980 300
-M970 233 L400 233
+M1046 300 L1046 370
+M1034 406 L1034 467
+M1034 476 L1034 520 L1050 526 L1050 570 L1201 570 L1201 700 L1150 706.5
+M1150 706.5 L1001 706.5 L1001 526
+M997 520 L997 234 L400 234
 "
     />
 
     <animate
         attributeName="fill"
-        values="dodgerblue;dodgerblue;crimson;purple;orange;limegreen;orange;purple;crimson;crimson"
-        keyTimes="0;0.15;0.2;0.3;0.5;0.7;0.75;0.8;0.8;1"
+        calcMode="discrete"
+        values="dodgerblue;crimson;purple;orange;limegreen;purple;crimson"
+        keyTimes="0;0.2245;0.3197;0.3473;0.5196;0.6522;0.7649"
         dur="8s"
         repeatCount="indefinite"
     />
