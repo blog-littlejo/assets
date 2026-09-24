@@ -512,7 +512,7 @@ M997 365 L997 281 L950 234 L406 234
         attributeName="fill"
         calcMode="discrete"
         values="dodgerblue;crimson;purple;orange;limegreen;orange;purple;crimson"
-        keyTimes="0;0.2266;0.3289;0.3566;0.5299;0.6803;0.7083;0.7845"
+        keyTimes="0;0.2388;0.2746;0.3015;0.4946;0.6621;0.6934;0.7599"
         dur="8s"
         repeatCount="indefinite"
     />
