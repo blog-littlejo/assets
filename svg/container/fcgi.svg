@@ -25,4 +25,29 @@ M997 365 L997 281 L950 234 L406 234
         repeatCount="indefinite"
     />
 </circle>
+<circle cx="409" cy="190" r="6" fill="dodgerblue">
+    <animateMotion
+        dur="9s"
+        begin="1s"
+        repeatCount="indefinite"
+        path="
+M0 0 L541 0
+M637 94 L637 175
+M647 190 L731 190 L731 420 L642.3 420
+M642.3 420 L631 440 L631 500 L792 500 L792 612.5 L741 612.5
+M741 612.5 L592 612.5 L592 386
+M592 386 L639.33 405 L711 405 L711 200 L646 200 L646 210
+M646 210 L588 175 L588 91 L541 44 L-3 44
+"
+    />
+    <animate
+        attributeName="fill"
+        calcMode="discrete"
+        values="dodgerblue;crimson;purple;orange;limegreen;orange;purple;crimson"
+        keyTimes="0;0.1820;0.2092;0.3447;0.4818;0.6081;0.7436;0.8170"
+        dur="9s"
+        begin="1s"
+        repeatCount="indefinite"
+    />
+</circle>
 </svg>
